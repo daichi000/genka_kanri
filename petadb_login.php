@@ -39,19 +39,25 @@
           $stt = $pdo->prepare('SELECT * FROM dbtest WHERE username LIKE :name');//名前付きパラメータ
           $stt -> bindValue(':name',$_POST['username']);//postを代入
           $stt -> execute();
-          if(!$row = $stt -> fetch(PDO::FETCH_ASSOC)){
-            echo "not account";
-          }
-          while($row = $stt -> fetch(PDO::FETCH_ASSOC)){
-
+          // while(!$row = $stt -> fetch(PDO::FETCH_ASSOC)){
+          //   echo "not account";
+          // }
+          if($row = $stt -> fetch(PDO::FETCH_ASSOC)){
+            // echo "ok";
             if($_POST['pass'] == $row['password']){
-              echo "OK"."<br>";
-              header("Location:http://localhost/petadb/petadb_main.php");
-            }else{
-              echo "PWNG"."<br>";
-              break;
-            }
+                echo "OK"."<br>";
+                header("Location:http://localhost/petadb/petadb_main.php");
+              }else{
+                echo "PWNG"."<br>";
+                // break;
+              }
           }
+
+          // while($row = $stt -> fetch(PDO::FETCH_ASSOC)){
+          //
+          //
+          //   $row += 1;
+          // }
         }catch(PDOException $e){
           print("error:". $e->getMessage());
         }

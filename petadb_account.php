@@ -35,16 +35,35 @@ if(!empty($_POST['pw'])){
   // echo $id;
 }
 // echo $name;
-$stmt = $pdo -> prepare("INSERT INTO dbtest (username, password) VALUES (:username, :password)");
-// $name = $_POST["un"];
-$stmt->bindValue(':username', $name, PDO::PARAM_STR);
-$stmt->bindValue(':password', $pass, PDO::PARAM_STR);
-$stmt->execute();
 
-if($_POST["un"]=="daichi" && $_POST["pw"]=="123"){
-  echo "Login OK";
-}else{
-  echo "Not Login";
+//同一のアカウントが存在するかどうか
+try{
+  $stt = $pdo->prepare('SELECT * FROM dbtest WHERE username LIKE :name');//名前付きパラメータ
+  $stt -> bindValue(':name',$name);//postを代入
+  $stt -> execute();
+  if($row = $stt -> fetch(PDO::FETCH_ASSOC)){
+    echo "同一アカウントあり";
+  }else{
+  //登録
+  $stmt = $pdo -> prepare("INSERT INTO dbtest (username, password) VALUES (:username, :password)");
+  // $name = $_POST["un"];
+  $stmt->bindValue(':username', $name, PDO::PARAM_STR);
+  $stmt->bindValue(':password', $pass, PDO::PARAM_STR);
+  $stmt->execute();
+  echo "登録完了"."<br>"."以下からログインしてください";
+  ?>
+  <input type="button" name="" value="ログイン画面へ" onClick="location.href='http://localhost/petadb/petadb_login.php'">
+  <?php
+  }
+}catch(PDOException $e){
+    print("error:". $e->getMessage());
 }
-// echo $a;
+
+
+// if($_POST["un"]=="daichi" && $_POST["pw"]=="123"){
+//   echo "Login OK";
+// }else{
+//   echo "Not Login";
+// }
+// // echo $a;
  ?>
