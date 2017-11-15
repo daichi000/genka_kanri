@@ -32,12 +32,13 @@
     var pw = document.getElementById("pw").value;
     var pwconf = document.getElementById("pwconf").value;
 
-    //入力なし
+    //入力なしエラー
     if((un == "") || (pw == "") || (pwconf == "")){
       alert("入力していない項目があります");
       return false;
     }
 
+    //パスワード不一致
     if(pw != pwconf){
       alert("パスワードが一致していません");
       return false;

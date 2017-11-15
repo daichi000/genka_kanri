@@ -5,9 +5,20 @@
     <title>Login</title>
   </head>
   <body>
-    <form class="" action="petadb_login.php" method="post">
-      UserName<input type="text" name="username" value=""><br>
-      Password<input type="text" name="pass" value=""><br>
+    <script type="text/javascript">
+      function unpwerror(){
+        var id = document.getElementById("id").value;
+        var pass = document.getElementById("pass").value;
+
+        if((id == "") || (pass == "")){
+          alert("入力していない箇所があります");
+          return false;
+        }
+      }
+    </script>
+    <form class="" action="petadb_main.php" method="post" onsubmit="return unpwerror();">
+      UserName<input type="text" name="username" id="id" value=""><br>
+      Password<input type="password" name="pass" id="pass" value=""><br>
       <input type="submit" name="login" value="Login">
     </form>
     <?php
@@ -33,7 +44,8 @@
 
 
     //name検索
-    if(isset($_POST['username'])){
+    if(isset($_POST['username']) && isset($_POST['pass'])){
+
       if($_POST['username']!=''){
         try{
           $stt = $pdo->prepare('SELECT * FROM dbtest WHERE username LIKE :name');//名前付きパラメータ
@@ -51,6 +63,8 @@
                 echo "PWNG"."<br>";
                 // break;
               }
+          }else{
+            echo "not account";
           }
 
           // while($row = $stt -> fetch(PDO::FETCH_ASSOC)){
@@ -62,8 +76,9 @@
           print("error:". $e->getMessage());
         }
       }
+    }else{
+      echo "入力していない箇所あり";
     }
-
 
 
  ?>
