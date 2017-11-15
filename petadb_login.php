@@ -31,40 +31,34 @@
         die('接続エラー：' .$Exception->getMessage());
     }
 
+
     //name検索
-    $name = '';
-    $name = $_POST['username'];
-    if($name!=''){
-      try{
-        $stt = $pdo->prepare('SELECT * FROM dbtest WHERE username LIKE :name');//名前付きパラメータ
-        $stt -> bindValue(':name',$name);//postを代入
-        $stt -> execute();
-        if(!$row = $stt -> fetch(PDO::FETCH_ASSOC)){
-          echo "not account";
-        }
-        while($row = $stt -> fetch(PDO::FETCH_ASSOC)){
-
-          if($_POST['pass'] == $row['password']){
-            echo "OK"."<br>";
-            break;
-          }else{
-            echo "PWNG"."<br>";
-            break;
+    if(isset($_POST['username'])){
+      if($_POST['username']!=''){
+        try{
+          $stt = $pdo->prepare('SELECT * FROM dbtest WHERE username LIKE :name');//名前付きパラメータ
+          $stt -> bindValue(':name',$_POST['username']);//postを代入
+          $stt -> execute();
+          if(!$row = $stt -> fetch(PDO::FETCH_ASSOC)){
+            echo "not account";
           }
-        }
-        $name = '';
+          while($row = $stt -> fetch(PDO::FETCH_ASSOC)){
 
-      }catch(PDOException $e){
-        print("error:". $e->getMessage());
+            if($_POST['pass'] == $row['password']){
+              echo "OK"."<br>";
+              header("Location:http://localhost/petadb/petadb_main.php");
+            }else{
+              echo "PWNG"."<br>";
+              break;
+            }
+          }
+        }catch(PDOException $e){
+          print("error:". $e->getMessage());
+        }
       }
     }
 
-    	// //postなら処理を実行する
-    	// if($_SERVER['REQUEST_METHOD']==='POST'){
-      //
-    	// 	header('Location:http://localhost/petadb_login.php');
-      //
-    	// }
+
 
  ?>
   </body>
