@@ -38,14 +38,14 @@ if(!empty($_POST['pw'])){
 
 //同一のアカウントが存在するかどうか
 try{
-  $stt = $pdo->prepare('SELECT * FROM dbtest WHERE username LIKE :name');//名前付きパラメータ
+  $stt = $pdo->prepare('SELECT * FROM petauser WHERE Name LIKE :name');//名前付きパラメータ
   $stt -> bindValue(':name',$name);//postを代入
   $stt -> execute();
   if($row = $stt -> fetch(PDO::FETCH_ASSOC)){
     echo "同一アカウントあり";
   }else{
   //登録
-  $stmt = $pdo -> prepare("INSERT INTO dbtest (username, password) VALUES (:username, :password)");
+  $stmt = $pdo -> prepare("INSERT INTO petauser (Name, password) VALUES (:username, :password)");
   // $name = $_POST["un"];
   $stmt->bindValue(':username', $name, PDO::PARAM_STR);
   $stmt->bindValue(':password', $pass, PDO::PARAM_STR);

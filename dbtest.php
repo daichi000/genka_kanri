@@ -31,7 +31,17 @@ while($row = $stmh->fetch(PDO::FETCH_ASSOC)){
    drink:<input type="text" name="drink" >
    <input type="submit" value="送信">
  </form>
+<script type="text/javascript">
+var scope = 'Global Variable';
 
+function getValue() {
+var scope = 'Local Variable';
+return scope;
+}
+
+document.writeln(getValue());  //Local Variable
+document.writeln(scope);  //Global Variable
+</script>
 <?php
 $id = null;
 $name = null;
