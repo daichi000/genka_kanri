@@ -59,6 +59,7 @@ $status = "none";
 <head>
   <meta charset="UTF-8">
   <title>ユーザ入力画面</title>
+  <link rel="stylesheet" href="user.css">
   <script src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous">></script>
@@ -98,9 +99,6 @@ $status = "none";
           for(var i in data){
             $('#idData').append('<option value=' + i + '>' + data[i] + '</option>');//value:id
           }
-
-
-
         });
           // return false;
       });
@@ -138,16 +136,17 @@ $status = "none";
           // cashe: false
 
         }, function(display){
-          // alert (aaa);
-          $('#view').append("<br>", display);
-          //リセット
-          // $('.code_mst')[0].reset();
-          // $('#idData')[0].reset();
-          // $('task_write')[0].reset();
+          var works = display.key;
+          //変数を動的に指定
+          $('#view').append("<div id=" + works + "><br>" + display.value + "<input type='button' value='edit' class='edit' id=" + works + "><input type='button' value='delete' class='del' id=" + works + "></div>");
+
+          // $('#view').apppend('<div id=' + works + '>');
+          // var nest = $('<>').append('<div>')
+          // $('#'+ works).append()
 
           $('#task').val('');//textボックス初期化
           $('#str').val(end);
-          $('#end').val('');
+          $('#end').val(end);
           $('#bre').val('');
           $('#work_time').val('');
           $('.add_code').hide();
@@ -155,9 +154,129 @@ $status = "none";
           $('#id_code').hide();
           $('#task_write').hide();
           $('.code_mst').val('0');
+
+        //編集ダイアログクローズ
+        $('#close').on('click', function(){
+          $('#overlay, #modalWindow').fadeOut();
         });
 
+        //編集ダイアログ中央設置
+        locateCenter();
+        $(window).resize(locateCenter);
+
+        function locateCenter() {
+          let w = $(window).width();
+          let h = $(window).height();
+
+          let cw = $('#modalWindow').outerWidth();
+          let ch = $('#modalWindow').outerHeight();
+
+          $('#modalWindow').css({
+            'left': ((w - cw) / 2) + 'px',
+            'top': ((h - ch) / 2) + 'px'
+          });
+        }
+
+        });
       });
+
+      //削除ボタン
+      $(document).on('click','.del',function(){
+        $(this).parent().fadeOut(1000);
+        var works = $(this).attr('id');
+        $.post('del_works.php',{
+          works: works
+        });
+      });
+
+      //編集ボタン
+      $(document).on('click','.edit',function(){
+        var works = $(this).attr('id');
+        $('#overlay, #modalWindow').fadeIn();
+        $.post('data_edit.php',{
+          works: works
+        }, function(data){
+          // $('#date_edit').val(data);
+          $('#date_edit').datepicker({
+            dateFormat: dateFormat, //yy-mm-dd
+            showOtherMonths: true, //他の月を表示
+            selectOtherMonths: true //他の月を選択可能
+          }).datepicker('setDate',data.date_); //編集データ
+
+          $('#str_edit').val(data.str_.slice(0,-3));
+          $('#end_edit').val(data.end_.slice(0,-3));
+          $('#bre_edit').val(data.bre_.slice(0,-3));
+          $('#work_time_edit').val(data.time_.slice(0,-3));
+          $('.code_mst_edit').val(data.mst_);
+          $('.task_edit').val(data.task_);
+          // $('.idData_edit').val(data.sub_);
+          // $('.idData_edit').children().remove();
+          var code_mst = $('.code_mst_edit').val();
+          $.post('user_select.php',{
+            code_mst: code_mst
+            // cashe: false
+          }, function(data_edit){
+            //code_mst_editに属するsub_codeを表示
+            $('.idData_edit').children().remove();
+            for(var i in data_edit){
+              $('.idData_edit').append('<option value=' + i + '>' + data_edit[i] + '</option>');//value:id
+            }
+            $('.idData_edit').val(data.sub_);
+          });
+          $('.update').attr('id', works);
+        });
+        });
+
+        $('.code_mst_edit').change(function(){
+          $('.idData_edit').children().remove();
+          $('.idData_edit').append('<option value="0" >選択してください</option>');
+          var code_mst = $('.code_mst_edit').val();
+          $.post('user_select.php',{
+            code_mst: code_mst
+            // cashe: false
+          }, function(data_edit){
+            //code_mst_editに属するsub_codeを表示
+            for(var i in data_edit){
+              $('.idData_edit').append('<option value=' + i + '>' + data_edit[i] + '</option>');//value:id
+            }
+            // $('.idData_edit').children().remove();
+            // $('.idData_edit').val(data.sub_);
+          });
+        });
+
+        //UPDATEボタン
+        $(document).on('click','.update',function(){
+          var works = $(this).attr('id');
+          var task_af = $('.task_edit').val();
+          var idData_af = $('.idData_edit').val();
+          var code_mst_af = $('.code_mst_edit').val();
+          var date_af = $('#date_edit').val();
+          var str_af = $('#str_edit').val();
+          var end_af = $('#end_edit').val();
+          var bre_af = $('#bre_edit').val();
+          var work_time_af = $('#work_time_edit').val();
+          $.post('data_after.php', {
+            works : works,
+            task_af : task_af,
+            idData_af : idData_af,
+            code_mst_af : code_mst_af,
+            date_af : date_af,
+            str_af : str_af,
+            end_af : end_af,
+            bre_af : bre_af,
+            work_time_af : work_time_af
+          },function(update){
+            // alert(update);
+            $('#overlay, #modalWindow').fadeOut();
+            $('#'+ works).empty();
+            $('#'+ works).append("<br>" + update + "<input type='button' value='edit' class='edit' id=" + works + "><input type='button' value='delete' class='del' id=" + works + ">");
+          });
+        });
+
+        //CLOSEボタン
+        $(document).on('click','.close',function(){
+          $('#overlay, #modalWindow').fadeOut();
+        })
 
       $.datepicker.setDefaults($.datepicker.regional["ja"]);
       var dateFormat = 'yy-mm-dd';
@@ -182,6 +301,19 @@ $status = "none";
         'timeFormat': 'H:i',
         'step' : '10'
       });
+      $('#str_edit').timepicker({
+        'timeFormat': 'H:i',
+        'step' : '10'
+      });
+      $('#end_edit').timepicker({
+        'timeFormat': 'H:i',
+        'step' : '10'
+      });
+      $('#bre_edit').timepicker({
+        'timeFormat': 'H:i',
+        'step' : '10'
+      });
+
 
       //時間計算
   		var timeMath = {
@@ -232,7 +364,6 @@ $status = "none";
 
   	        return ((fullSecond < 0) ? '-' : '') + hour + ':' + minute + ':' + second;
   	    }
-
   	  };
 
   		$('#str, #end, #bre').change(function(){
@@ -245,24 +376,25 @@ $status = "none";
   				$('#work_time').val(result1.slice(0,-3));//秒を非表示
   			}
   		});
+
+      $('#str_edit, #end_edit, #bre_edit').change(function(){
+  			var str_edit_input = $('#str_edit').val();
+  			var end_edit_input = $('#end_edit').val();
+        var bre_edit_input = $('#bre_edit').val();
+        if(str_edit_input && end_edit_input){
+  				var result2 = timeMath.sub(end_edit_input + ':00', str_edit_input + ':00', bre_edit_input + ':00');
+  				// console.log(result1);
+  				$('#work_time_edit').val(result2.slice(0,-3));//秒を非表示
+  			}
+  		});
     });
 
   </script>
 </head>
 <body>
-  <!-- <form id="search" method="post">
-    code_master:<input type="text" id="request">
-    <input type="submit" value="検索" id='button'>
-  </form>
-  <br>
-  <div id="res"></div>
-  <form id="plus" method="post">
-    <input type="text" id="task">
-    <input type="submit" value="追加" id='button_plus'>
-  </form> -->
   <p>Login now: <?php echo htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?></p><br/>
 
-  <span>date: <input type="text" id="date"></span>
+  <p>date: <input type="text" id="date"></p>
   <p>start: <input type='text' id='str'></p>~
   <p>end: <input type='text' id='end'></p>
   <p>break: <input type='text' id='bre'></p>
@@ -294,12 +426,43 @@ $status = "none";
   <!-- <div id='res_add'>
   </div> -->
   <span class="" id='task_write'>
-    <input type="text" id="task" value="">
+    task: <input type="text" id="task" value="">
     <input type="button" id="add_task" value="add">
   </span></br></br>
 
   <div id='view'>
+  </div>
+  <div id='overlay'>
+  </div>
+  <!-- 編集ダイアログ -->
+  <div id="modalWindow">
+    <p id='test'>date: <input type='text' id='date_edit' value=''></p>
+    <p>start: <input type='text' id='str_edit'></p>~
+    <p>end: <input type='text' id='end_edit'></p>
+    <p>break: <input type='text' id='bre_edit'></p>
+    <p>time: <input type="text" id="work_time_edit" name="" value=""></p>
+    <p>master_code:
+    <select class="code_mst_edit" value="">
+      <option value='0'>選択してください</option>
+      <?php
+      foreach($cdmst_list as $key => $cdmst_name){
+        echo '<option value="'.$key.'">'.$cdmst_name.'</option>';
+      }
+      ?>
+    </select>
+    </p>
+    <p id='id_code'>id_code:
+    <select class="idData_edit" value="" id=''>
+      <option value='0'>選択してください</option>
+    </select>
+    </p>
+    <p class="" id='task_edit'>
+      task: <input type="text" class="task_edit" value="">
+    </p>
+    <input type="button" class="close" value="close">
+    <input type="button" class="update" value="update">
 
+    </div>
   </div>
 
 </body>
