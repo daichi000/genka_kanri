@@ -47,11 +47,11 @@ try{
   print 'エラー:'. $e->getMessage().'<br/>';
 }
 
-$value = $date_af.' '.$str_af.'~'.$end_af.' '.$bre_af.' '.$work_time_af.' '.$cmd['cdmst'].' '.$cod['code'].' '.$task_af;
-// $send_value = array('key' => $key, 'value' => $value);
-// $send_value[] = array($key => $value);
-// header('Content-type:application/json; charset=utf8');
+// $value = $date_af.' '.$str_af.'~'.$end_af.' '.$bre_af.' '.$work_time_af.' '.$cmd['cdmst'].' '.$cod['code'].' '.$task_af;
 
-// echo json_encode($send_value);
-echo $value;
+$value = array('date' => $date_af, 'str' => $str_af, 'end' => $end_af, 'bre' => $bre_af, 'work_time' => $work_time_af, 'mst' => $cmd['cdmst'], 'sub' => $cod['code'], 'task' => $task_af);
+// echo $value;
+header('Content-type:application/json; charset=utf8');
+
+echo json_encode($value);
  ?>
