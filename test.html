@@ -13,7 +13,7 @@ crossorigin="anonymous">></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery.timepicker.css" />
 <script src="./jquery-ui-1.12.1.custom/jquery.timepicker.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(function() {
   $('#open').on('click', function() {
     $('#overlay, #modalWindow').fadeIn();
@@ -39,58 +39,82 @@ $(function() {
     });
   }
 });
-</script>
+</script> -->
 <style>
-#overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.3);
-  display: none;
-  z-index: 1
- }
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 0px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 900px;
+  margin: 0 auto;}
 
-#modalWindow {
-  width: 350px;
-  height: 150px;
-  position: fixed;
-  border: 2px solid #D04255;
-  background-color: #FFF;
-  display: none;
-  z-index: 2
-}
-
-body {
-  text-align: center;
-}
-
-button {
-  width: 100px;
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/3);
   height: 50px;
-  font-size: 1.2em;
-  color: #D04255;
-  background-color: #FFF;
-  border: solid 2px #D04255;
-  border-radius: 3px;
-  transition: .4s;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
 }
 
-button:hover {
-  background: #D04255;
-  color: #FFF;
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
 }
 </style>
 
 <body>
-  <p>「Open」をクリックすると、オーバーレイ/モーダルウィンドウを表示します。</p>
-<button id="open">Open</button>
-<div id="overlay"></div>
-<input type="text" name="" value="aaaaaaa">ddd
-<div id="modalWindow">
-  <p>「Close」をクリックすると、オーレ―バイ/モーダルウィンドウを非表示にします。</p>
-  <button id="close">Close</button>
+  <div class="tabs">
+      <input id="all" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="all">総合</label>
+      <input id="programming" type="radio" name="tab_item">
+      <label class="tab_item" for="programming">プログラミング</label>
+      <input id="design" type="radio" name="tab_item">
+      <label class="tab_item" for="design">デザイン</label>
+      <div class="tab_content" id="all_content">
+          総合の内容がここに入ります
+      </div>
+      <div class="tab_content" id="programming_content">
+          プログラミングの内容がここに入ります
+  </div>
+      <div class="tab_content" id="design_content">
+          デザインの内容がここに入ります
+  </div>
 </div>
 </body>
 </html>

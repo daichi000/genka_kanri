@@ -79,8 +79,8 @@ try{
 
 // $key = mysql_insert_id();
 
-$value = $date.' '.$str.'~'.$end.' '.$bre.' '.$work_time.' '.$cmd['cdmst'].' '.$cod['code'].' '.$task;
-$send_value = array('key' => $key, 'value' => $value);
+// $value = $date.' '.$str.'~'.$end.' '.$bre.' '.$work_time.' '.$cmd['cdmst'].' '.$cod['code'].' '.$task;
+$send_value = array('key' => $key, 'date' => $date, 'str' => $str, 'end' => $end, 'bre' => $bre, 'work_time' => $work_time, 'mst' => $cmd['cdmst'], 'sub' => $cod['code'], 'task' => $task);
 // $send_value[] = array($key => $value);
 header('Content-type:application/json; charset=utf8');
 
