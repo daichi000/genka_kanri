@@ -5,7 +5,7 @@ if($request !== 'xmlhttprequest') exit;
 header('Content-Type: application/json; charset=utf-8');
 
 try{
-  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','');
+  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','13qe!#QE');
   // echo "OK";
 
 

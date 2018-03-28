@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
     }
 
     body{
-      height:100%;
+      height:95vh;
     }
 
     main {
@@ -22,7 +22,7 @@
 
     header{
       background-color:#44DEDE;
-      height:50px;
+      height:5vh;
     }
 
     .jmc_icon{
@@ -65,7 +65,7 @@
       margin:auto;
       font-size:16px;
       /* box-sizing: border-box; */
-      height:100ch;
+      height:95vh;
       padding-top:300px;
     }
 
@@ -137,8 +137,8 @@
         <h2 class="login_header">ログイン</h2>
         <form class="login_container" action="user.php" method="post" onsubmit="return unpwerror();">
           <table>
-          <tr><td>UserName</td><td><input type="text" name="username" id="id" value="" autocomplete="off"></td></tr>
-          <tr><td>Password</td><td><input type="password" name="pass" id="pass" value=""></td></tr>
+          <tr><td height="50px">UserName</td><td><input type="text" name="username" id="id" value="" autocomplete="off"></td></tr>
+          <tr><td height="50px">Password</td><td><input type="password" name="pass" id="pass" value=""></td></tr>
           </table>
           <center><input type="submit" name="login" value="Login"></center>
         </form>

@@ -57,7 +57,7 @@ main {
 
 header{
   background-color:#44DEDE;
-  height:50px;
+  height:5vh;
 }
 
 .jmc_icon{
@@ -100,7 +100,7 @@ header i{
   margin:auto;
   font-size:16px;
   /* box-sizing: border-box; */
-  height:100ch;
+  height:95vh;
   padding-top:300px;
 }
 
@@ -174,13 +174,13 @@ a{
       <form class="login_container" action="petadb_account.php" method="post" onsubmit="return registration_check();">
       <table>
         <tr>
-          <td>UserName</td><td><input type="text" name="un" id="un" value="" autocomplete="off"></td>
+          <td height='50px' width="90px">UserName</td><td><input type="text" name="un" id="un" value="" autocomplete="off"></td>
         </tr>
         <tr>
-          <td>Password</td><td><input type="password" name="pw" id="pw" value=""></td>
+          <td height="50px">Password</td><td><input type="password" name="pw" id="pw" value=""></td>
         </tr>
         <tr>
-          <td>Password Check</td><td><input type="password" name="pwconf" id="pwconf" value="" onkeyup="setConfirmPW(this.value);"></td><td><div id="pass_confirm_message"></div></td>
+          <td height="50px">Password Check</td><td><input type="password" name="pwconf" id="pwconf" value="" onkeyup="setConfirmPW(this.value);"></td><td><div id="pass_confirm_message"></div></td>
         </tr>
       </table>
 

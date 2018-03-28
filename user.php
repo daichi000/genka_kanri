@@ -10,7 +10,7 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
   $status = "none";
   // $namejs = array($name);
     try{
-      $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','');
+      $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','13qe!#QE');
       // echo "OK";
 
 
@@ -41,7 +41,127 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
                 $_SESSION['NAME'] = $name;
                 // echo $name.'<br>';
               }else{
-                echo "PWNG"."<br>";
+                // echo "PWNG"."<br>";
+                ?>
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+                <style type="text/css">
+                html{
+                  height:100%;
+                }
+
+                body{
+                  height:100%;
+                }
+
+                main {
+                  background: #456;
+                  font-family: 'Open Sans', sans-serif;
+                  height:95%;
+                  padding-top:300px;
+                }
+
+                header{
+                  background-color:#44DEDE;
+                  height:50px;
+                }
+
+                .jmc_icon{
+                  border:1.2px black solid;
+                  border-radius:5px;
+                  float:left;
+                  margin-right:30px;
+                  margin-top:3px;
+                  margin-left:5px;
+                }
+
+                header h1{
+                  font-size:25px;
+                  color:#F5F5F5;
+                  /* font-family:Arial,'ＭＳ Ｐゴシック',sans-serif ; */
+                  /* margin-top:15px; */
+                  /* padding-top:9px; */
+                  margin:6px 0 0 0;
+                  float:left;
+                }
+
+                .top_login{
+
+                  float:right;
+                  /* width:30px; */
+                  height:30px;
+                  margin-right:100px;
+                  padding-top:2px;
+                  margin-top:10px;
+                  border-left:1px #dcdcdc solid;
+                  border-right:1px #dcdcdc solid;
+                }
+
+                header i{
+                  float:left;
+                }
+
+                .ng, .ok{
+                  width:500px;
+                  margin:auto;
+                  font-size:16px;
+                  /* box-sizing: border-box; */
+                  /* margin-top:300px; */
+                  padding-top:300px;
+                  background: #ebebeb;
+                  padding: 12px;
+                  /* text-aligh: center; */
+                }
+
+                .ng p, .ok p{
+                  text-align: center;
+                }
+
+                input[type="button"] {
+                  background: #28d;
+                  border-color: transparent;
+                  color: #fff;
+                  cursor: pointer;
+                  padding:20px 100px;
+                }
+
+                input[type="button"]:hover {
+                  background: #17c;
+                }
+
+                /* Buttons' focus effect */
+                input[type="button"]:focus {
+                  border-color: #05a;
+                }
+
+                input.font-awesome{
+                  font-family: Font-Awesome;
+                  font-style: normal;
+                  font-weight: normal;
+                  text-decoration: inherit;
+                }
+                </style>
+                <body>
+                  <header>
+                    <img src="./jmc_icon.jpg" alt="" class='jmc_icon'>
+                    <h1>開発課原価管理</h1>
+                    <div class="top_login">
+                      <i class="material-icons">person</i>
+                      <span class='login'><?php echo htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?></span>
+                    </div>
+                    <div class="logout">
+
+                    </div>
+                  </header>
+                  <script type="text/javascript" src="info.js">
+                  </script>
+                  <main>
+                    <div class="ng">
+                      <p>パスワードが違います</p>
+                      <center><input type="button" value="戻る" onClick="location.href='./petadb_login.php'"></center>
+                    </div>
+                  </main>
+                  <?php
                 exit();
               }
           }else{
@@ -121,27 +241,6 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
               text-align: center;
             }
 
-            /* body > .login{
-              height:auto;
-            } */
-
-            /* .login_header {
-              background: #28d;
-              padding: 20px;
-              font-size: 1.4em;
-              font-weight: normal;
-              text-align: center;
-              text-transform: uppercase;
-              color: #fff;
-              margin:0;
-            } */
-
-            /* .login_container{
-              background: #ebebeb;
-              padding: 12px;
-              text-aligh: center;
-            } */
-
             input[type="button"] {
               background: #28d;
               border-color: transparent;
@@ -159,10 +258,12 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
               border-color: #05a;
             }
 
-            /* table{
-              margin-left:20px;
-              margin-bottom:20px;
-            } */
+            input.font-awesome{
+              font-family: Font-Awesome;
+              font-style: normal;
+              font-weight: normal;
+              text-decoration: inherit;
+            }
             </style>
             <body>
               <header>
@@ -211,9 +312,8 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-  <!-- <link rel="stylesheet" href="./bootstrap-datepicker-master/js/bootstrap-datepicker.js" /> -->
   <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery.timepicker.css" />
-  <link rel="stylesheet" href="userss.css" />
+  <link rel="stylesheet" href="user.css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="./jquery-ui-1.12.1.custom/jquery.timepicker.min.js"></script>
@@ -226,7 +326,8 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
     <img src="./jmc_icon.jpg" alt="" class='jmc_icon'>
     <h1>開発課原価管理</h1>
     <div class="logout">
-      <i class="material-icons w3-xxxlarge" onClick="location.href='./petadb_login.php'">arrow_forward</i>
+      <!-- <i class="material-icons w3-xxxlarge" onClick="location.href='./petadb_login.php'">arrow_forward</i> -->
+      <a href="./petadb_login.php"><img src="./logout.png" alt=""></a>
     </div>
     <div class="top_login">
       <i class="material-icons">person</i>
@@ -253,14 +354,15 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
       <!-- </div> -->
 
     <div class="tab_content" id="in_content">
-      <table>
-      <tr><td width="80px">作業日</td><td><input type="text" id="date"></td><td id="date_err"></td></tr>
-      <tr><td>開始時刻</td><td><input type='text' id='str'></td><td id="str_err"></td></tr>
-      <tr><td>終了時刻</td><td><input type='text' id='end'></td><td id="end_err"></td></tr>
-      <tr><td>休憩</td><td><input type='text' id='bre'></td></tr>
-      <tr><td>作業時間</td><td><input type="text" id="work_time" name="" value=""></td><td id="time_err"></td></tr>
+      <table id='write_tb'>
+      <caption>作業入力欄</caption>
+      <tr><td>作業日</td><td id="date_err" width="90px"></td><td width="500px"><input type="text" id="date"></td></tr>
+      <tr><td>開始時刻</td><td id="str_err"></td><td><input type='text' id='str'></td></tr>
+      <tr><td>終了時刻</td><td id="end_err"></td><td><input type='text' id='end'></td></tr>
+      <tr><td>休憩</td><td></td><td><input type='text' id='bre'></td></tr>
+      <tr><td>作業時間</td><td id="time_err"></td><td><input type="text" id="work_time" name="" value=""></td></tr>
 
-      <tr><td>主コード</td>
+      <tr><td>主コード</td><td id="cdmst_err"></td>
       <td><select class="code_mst" value="">
         <option value='0'>選択してください</option>
         <?php
@@ -268,22 +370,22 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
           echo '<option value="'.$key.'">'.$cdmst_name.'</option>';
         }
         ?>
-      </select></td>
+      </select></td></tr>
 
-      <td id='id_code' width="48px">コード</td>
+      <tr><td id='id_code' width="90px">コード</td><td id="idData_err" width="60px"></td>
       <td><select class="" value="" id='idData'>
         <option>選択してください</option>
 
-      </select></td>
+      </select></td></tr>
 
-      <td class="" id='task_write' width="280px">
-        作業内容<input type="text" id="task" value=""></td><td id="task_err"></td>
-        <td width="40px"><input type="button" id="add_task" value="追加">
+      <tr><td class="" id='task_write' width="40px">
+        作業内容</td><td id="task_err"></td><td><input type="text" id="task" value=""></td>
+        <td width="70px"><input type="button" id="add_task" value="⊕ 追加">
       </td></br></br></tr></table>
 
       <div id='view'>
         <table id='view_tb'>
-          <tr><th width='15%'>日にち</th><th width='200px'>時間</th><th width='220px'>主コード</th><th width='200px'>コード</th><th width='200px'>内容</th><th width='130px'></th></tr>
+          <tr><th width='150px'>日にち</th><th width='200px'>時間</th><th width='220px'>主コード</th><th width='200px'>コード</th><th width='200px'>内容</th><th width='150px'></th></tr>
         </table>
       </div>
       <div id='overlay'>
@@ -359,8 +461,9 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
         </td><td id='task_edit_err'></td></tr>
       </table>
 
-      <input type="button" class="close" value="閉じる">
-      <input type="button" class="update" value="更新">
+      <input type="button" class="update" value="⟳ 更新">
+      <input type="button" class="close" value="キャンセル">
+
 
     </div>
 </body>

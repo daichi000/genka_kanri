@@ -20,7 +20,7 @@
 
 //DB接続
 try{
-  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','');
+  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','13qe!#QE');
   // echo "OK";
 
 
@@ -186,7 +186,7 @@ try{
  input[type="button"]:focus {
    border-color: #05a;
  }
- 
+
  </style>
  </body>
 </html>

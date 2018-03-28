@@ -1,0 +1,443 @@
+/* body{
+  height:100%;
+} */
+
+#overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 1
+}
+
+#view{
+  /* width: 70vw; */
+  height: 35ch;
+  /* overflow: auto; */
+  margin-top:50px;
+}
+
+table#view_tb{
+  border-collapse: collapse;
+  border-right:1px solid #d9d9d9;
+  table-layout: fixed;
+}
+
+#view_tb th{
+  border-right:1px solid #d9d9d9;
+  border-left:1px solid #d9d9d9;
+  border-bottom:1px solid #d9d9d9;
+  color:#F5F5F5;
+  font-size:17px;
+  background-color:#44DEDE;
+}
+
+#view_tb td{
+  border-right:1px solid #d9d9d9;
+  border-left:1px solid #d9d9d9;
+  border-bottom:1px solid #d9d9d9;
+  color:#000;
+  font-size:17px;
+  background-color:#fff;
+  text-align: center;
+}
+
+#select_day_view, #select_month_view{
+  width: 95%;
+  height: 75ch;
+  overflow: auto;
+  margin-top:50px;
+}
+
+/* @media screen and (min-width: 500px){
+  table#write_tb_br{
+    display: none;
+  }
+} */
+
+/* @media screen and (max-width: 499px){
+  table#write_tb{
+    display: none;
+  }
+} */
+
+table#write_tb{
+   border:1px solid #d9d9d9;
+   border-radius: 6px;
+   background-color: #44DEDE;
+   opacity: 0.8;
+   border-spacing:0px 8px;
+}
+#write_tb td{
+  border-width:0;
+  font-size: 15px;
+  font-family: 'MS P丸ゴシック';
+  margin-left: 3px;
+}
+#write_tb caption{
+  font-size: 18px;
+}
+
+table#day_view{
+  border-collapse: collapse;
+  border-right:1px solid #d9d9d9;
+}
+
+#day_view th{
+  border-right:1px solid #d9d9d9;
+  border-left:1px solid #d9d9d9;
+  border-bottom:1px solid #d9d9d9;
+  color:#F5F5F5;
+  font-size:17px;
+  background-color:#44DEDE;
+}
+
+#day_view td{
+  border-right:1px solid #d9d9d9;
+  border-left:1px solid #d9d9d9;
+  border-bottom:1px solid #d9d9d9;
+  color:#000;
+  font-size:17px;
+  background-color:#fff;
+  text-align: center;
+}
+
+/* 作業表示（日）ボタン */
+#select_day_button,#select_month_button,#day_open,#day_hidden,.close{
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  background-image: -webkit-linear-gradient(top, #d9d9d9, #d9d9d9);
+  background-image: linear-gradient(to bottom, #d9d9d9, #d9d9d9);
+  border-radius: 2px;
+  color: #000;
+  line-height: 25px;
+  -webkit-transition: none;
+  transition: none;
+  /* text-shadow: 0 1px 1px rgba(0, 0, 0, .3); */
+  outline: none;
+  cursor: pointer;
+}
+
+#add_task{
+  border: 0px;
+  background-color: #d9d9d9;
+  background-image: -webkit-linear-gradient(top, #d9d9d9, #d9d9d9);
+  background-image: linear-gradient(to bottom, #d9d9d9, #d9d9d9);
+  border-radius: 2px;
+  color: #000;
+  line-height: 25px;
+  -webkit-transition: none;
+  transition: none;
+  /* text-shadow: 0 1px 1px rgba(0, 0, 0, .3); */
+  outline: none;
+  cursor: pointer;
+  width: 60px;
+  height: 33px;
+  /* background: url("./s_task.png") left top no-repeat; */
+  /* z-index: -10; */
+}
+
+.edit{
+  border: 0px;
+  width: 30px;
+  height: 30px;
+  background: url("./images.png") left top no-repeat;
+  cursor: pointer;
+  outline: none;
+}
+
+.del,.del_select{
+  border: 0px;
+  width: 30px;
+  height: 30px;
+  background: url("./s_images.png") left top no-repeat;
+  cursor: pointer;
+  outline: none;
+}
+
+.update{
+  border: 1px solid #44DEDE;
+  background-color: #44DEDE;
+  background-image: -webkit-linear-gradient(top, #44DEDE, #44DEDE);
+  background-image: linear-gradient(to bottom, #44DEDE, #44DEDE);
+  border-radius: 2px;
+  color: #000;
+  line-height: 25px;
+  -webkit-transition: none;
+  transition: none;
+  /* text-shadow: 0 1px 1px rgba(0, 0, 0, .3); */
+  outline: none;
+  cursor: pointer;
+  margin-left: 400px;
+}
+
+#select_day_button:hover,#select_month_button:hover,#day_open:hover,#day_hidden:hover{
+  border:1px solid #44DEDE;
+  background-color: #44DEDE;
+  background-image: -webkit-linear-gradient(top, #44DEDE, #44DEDE);
+  background-image: linear-gradient(to bottom, #44DEDE, #44DEDE);
+}
+
+#add_task:hover{
+  border:1px solid #44DEDE;
+  background-color: #d9d9d9;
+  background-image: -webkit-linear-gradient(top, #d9d9d9, #d9d9d9);
+  background-image: linear-gradient(to bottom, #d9d9d9, #d9d9d9);
+  opacity: 0.7;
+}
+
+#select_day_button:active,#select_month_button:active,#select_month_button:active,#select_month_button:active,#add_task:active,.del_select:active,.close:active,.update:active{
+  background: #1a92c2;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+  color: #1679a1;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
+}
+
+.del,.edit,.del_select{
+  margin-left:8px;
+}
+
+#modalWindow {
+  width: 590px;
+  height: 450px;
+  position: fixed;
+  border: 2px solid #44DEDE;
+  background-color: #fff;
+  display: none;
+  z-index: 2;
+  padding: 70px 7px;
+}
+
+#edit_dialog{
+  margin-bottom:20px;
+  border-spacing: 0px 8px;
+  margin-left:12px;
+}
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 0px;
+  /* padding-bottom: 200px; */
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: auto;
+  /* margin: 0 auto; */
+  height: 95vh;
+  /* float:left; */
+}
+
+/* .side_tabs{
+  float:left;
+  width:700px;
+} */
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(280px);
+  height: 50px;
+  /* border-bottom: 3px solid #5ab4bd; */
+  background-color: #fff;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  /* float: left; */
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  border-right:1px solid #d9d9d9;
+  cursor: pointer;
+}
+
+.tab_item:hover {
+  opacity: 0.75;
+  background-color:#d9d9d9;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+  margin-left:320px;
+  margin-top:-50px;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#in:checked ~ #in_content,
+#day_out:checked ~ #day_out_content,
+#month_out:checked ~ #month_out_content {
+  display: block;
+}
+
+/* メニューアイコン */
+.menu{
+  margin-left:290px;
+  margin-top:-1080px;
+  cursor: pointer;
+}
+
+/* サイドバーの下 */
+.tab_bottom{
+  background-color:#fff;
+  width:280px;
+  height:84.2%;
+  border-right:1px solid #d9d9d9;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #d9d9d9;
+  color: #fff;
+}
+
+.login, .top_month_select, .tab_item, .jmc_icon, h1, i{
+  user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.login{
+  text-align:right;
+}
+
+/* 表示形式ボタン */
+.month_display input{
+  display: none;
+  float:left;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.month_display label{
+  display: block;
+  float: left;
+  cursor: pointer;
+  width: 80px;
+  margin: 0;
+  padding: 8.5px 5px;
+  border-right: 1px solid #abb2b7;
+  background: #d9d9d9;
+  color: #555e64;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1;
+  transition: .2s;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.month_display label:first-of-type{
+  border-radius: 3px 0 0 3px;
+}
+
+.month_display label:last-of-type{
+  border-right: 0px;
+  border-radius: 0 3px 3px 0;
+}
+
+.month_display input[type="radio"]:checked + label {
+  background-color: #44DEDE;
+  color: #fff;
+}
+
+#date_err,#str_err,#end_err,#task_err,#time_err,#cdmst_err,#idData_err{
+  color: red;
+  font-size: 70%;
+  vertical-align: top;
+  position: relative;
+  top: -0.1em;
+}
+
+#date_edit_err,#str_edit_err,#end_edit_err,#task_edit_err,#time_edit_err,#code_mst_edit_err,#idData_edit_err{
+  color: red;
+  font-size:4px;
+}
+
+header{
+  background-color:#44DEDE;
+  height:50px;
+}
+
+.jmc_icon{
+  border:1.2px black solid;
+  border-radius:5px;
+  float:left;
+  margin-right:30px;
+  margin-top:3px;
+  margin-left:5px;
+}
+
+header h1{
+  font-size:28px;
+  color:#F5F5F5;
+  /* font-family:Arial,'ＭＳ Ｐゴシック',sans-serif ; */
+  /* margin-top:15px; */
+  /* padding-top:9px; */
+  margin:3px 0 0 0;
+  float:left;
+}
+
+.top_login{
+  float:right;
+  /* width:30px; */
+  height:30px;
+  margin-right:20px;
+  padding-top:2px;
+  margin-top:10px;
+  border-left:1px #dcdcdc solid;
+  border-right:1px #dcdcdc solid;
+}
+
+header i{
+  float:left;
+  /* font-size: 30px; */
+  width: 30px;
+}
+
+.material-icons{
+  font-size: 30px;
+}
+
+#select_month_button{
+  margin-top:10px;
+  margin-left:30px;
+}
+
+#day_open, #day_hidden{
+  float:right;
+  margin-top:10px;
+  margin-right:5px;
+}
+
+.logout{
+  float:right;
+  margin-right:30px;
+  margin-top:5px;
+  cursor: pointer;
+  width:45px;
+  height:50px;
+}
+
+/* .logout:hover{
+  background-color: #d9d9d9;
+
+} */
+
+input.font-awesome{
+  font-family: Font-Awesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}

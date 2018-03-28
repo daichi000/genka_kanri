@@ -2,7 +2,7 @@
 $edit_works_id = $_POST['works'];
 
 try{
-  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','');
+  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','13qe!#QE');
   // echo "OK";
 
 

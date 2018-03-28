@@ -10,7 +10,7 @@ $work_time_af = $_POST['work_time_af'];
 $idData_af = $_POST['idData_af'];
 
 try{
-  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','');
+  $pdo = new PDO('mysql:host=localhost;dbname=test', 'root','13qe!#QE');
   // echo "OK";
 
 
