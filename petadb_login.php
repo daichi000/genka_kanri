@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>楽楽勤怠</title>
   </head>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -12,7 +13,7 @@
     }
 
     body{
-      height:95vh;
+      height:100%;
     }
 
     main {
@@ -22,7 +23,7 @@
 
     header{
       background-color:#44DEDE;
-      height:5vh;
+      height:50px;
     }
 
     .jmc_icon{
@@ -61,12 +62,12 @@
     }
 
     .login{
-      width:400px;
+      width:40vh;
       margin:auto;
-      font-size:16px;
+      font-size:1.5vh;
       /* box-sizing: border-box; */
       height:95vh;
-      padding-top:300px;
+      padding-top:30vh;
     }
 
     /* body > .login{
@@ -75,7 +76,7 @@
 
     .login_header {
       background: #28d;
-      padding: 20px;
+      padding: 2vh;
       font-size: 1.4em;
       font-weight: normal;
       text-align: center;
@@ -86,7 +87,7 @@
 
     .login_container{
       background: #ebebeb;
-      padding: 12px;
+      padding: 2vh;
       text-aligh: center;
     }
 
@@ -95,7 +96,7 @@
       border-color: transparent;
       color: #fff;
       cursor: pointer;
-      padding:20px 100px;
+      padding:2vh 10vh;
     }
 
     .login input[type="submit"]:hover {
@@ -108,8 +109,9 @@
     }
 
     table{
-      margin-left:20px;
-      margin-bottom:20px;
+      margin-left:2vh;
+      margin-bottom:2vh;
+      font-size:1.5vh;
     }
 
     a{
@@ -137,9 +139,9 @@
         <h2 class="login_header">ログイン</h2>
         <form class="login_container" action="user.php" method="post" onsubmit="return unpwerror();">
           <table>
-          <tr><td height="50px">UserName</td><td><input type="text" name="username" id="id" value="" autocomplete="off"></td></tr>
-          <tr><td height="50px">Password</td><td><input type="password" name="pass" id="pass" value=""></td></tr>
-          </table>
+          <tr><td height="1vh" width="90px">UserName</td><td><input type="text" name="username" id="username" value="" autocomplete="off"></td></tr>
+          <tr><td height="1vh">Password</td><td><input type="password" name="pass" id="pass" value=""></td></tr>
+        </table>
           <center><input type="submit" name="login" value="Login"></center>
         </form>
         <a href="./petadb_makeaccount.php">アカウントをお持ちでない方はこちら</a>

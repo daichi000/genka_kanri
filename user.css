@@ -16,7 +16,7 @@
 #view{
   /* width: 70vw; */
   height: 35ch;
-  /* overflow: auto; */
+  overflow: auto;
   margin-top:50px;
 }
 
@@ -225,8 +225,9 @@ table#day_view{
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   width: auto;
   /* margin: 0 auto; */
-  height: 95vh;
+  height: 121vh;
   /* float:left; */
+  font-size: 1.5vh;
 }
 
 /* .side_tabs{
@@ -270,7 +271,7 @@ input[name="tab_item"] {
   clear: both;
   overflow: hidden;
   margin-left:320px;
-  margin-top:-50px;
+  margin-top:-200vh;
 }
 
 /*選択されているタブのコンテンツのみを表示*/
@@ -283,7 +284,7 @@ input[name="tab_item"] {
 /* メニューアイコン */
 .menu{
   margin-left:290px;
-  margin-top:-1080px;
+  margin-top:-118vh;
   cursor: pointer;
 }
 
@@ -291,7 +292,7 @@ input[name="tab_item"] {
 .tab_bottom{
   background-color:#fff;
   width:280px;
-  height:84.2%;
+  height:104vh;
   border-right:1px solid #d9d9d9;
 }
 

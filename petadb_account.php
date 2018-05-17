@@ -50,7 +50,8 @@ if(!empty($_POST['un'])){
   // echo $id;
 }
 if(!empty($_POST['pw'])){
-  $pass = $_POST['pw'];
+  $pass_org = $_POST['pw'];
+  $pass = hash("sha256", $pass_org);
   // echo $id;
 }
 // echo $name;
@@ -73,10 +74,15 @@ try{
   <?php
   }else{
   //登録
-  $stmt = $pdo -> prepare("INSERT INTO petauser (Name, password) VALUES (:username, :password)");
+  $stmt = $pdo -> prepare("INSERT INTO petauser (Name, password, admin) VALUES (:username, :password, :admin)");
   // $name = $_POST["un"];
   $stmt->bindValue(':username', $name, PDO::PARAM_STR);
   $stmt->bindValue(':password', $pass, PDO::PARAM_STR);
+  if(isset($_POST['admin'])){
+    $stmt->bindValue(':admin', 1, PDO::PARAM_INT);
+  }else{
+    $stmt->bindValue(':admin', 0, PDO::PARAM_INT);
+  }
   $stmt->execute();
   // echo "登録完了"."<br>"."以下からログインしてください";
   ?>
@@ -96,7 +102,8 @@ try{
 <html>
  <head>
    <meta charset="utf-8">
-   <title>Login</title>
+   <link rel="shortcut icon" href="favicon.ico">
+   <title>楽楽勤怠</title>
  </head>
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -114,7 +121,7 @@ try{
    background: #456;
    font-family: 'Open Sans', sans-serif;
    height:95%;
-   padding-top:300px;
+   padding-top:30vh;
  }
 
  header{
@@ -155,14 +162,14 @@ try{
  }
 
  .ng, .ok{
-   width:500px;
+   width:50vh;
    margin:auto;
-   font-size:16px;
+   font-size:1.5vh;
    /* box-sizing: border-box; */
-   /* margin-top:300px; */
-   padding-top:300px;
+   margin-top:-5vh;
+   padding-top:20vh;
    background: #ebebeb;
-   padding: 12px;
+   padding: 2vh;
    /* text-aligh: center; */
  }
 

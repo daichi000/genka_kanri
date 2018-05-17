@@ -54,6 +54,8 @@ $nowMonth_str = date('Y-m-d', strtotime('first day of'.$now_Months.'-01'));//201
 $nowMonth_end = date('Y-m-d', strtotime($now_Months.'-15'));
 $arr = array();
 $arrs = array();
+$arr_str = array();
+$arr_end = array();
 
 if($format == '/' || $format == ',' || $format == '<br>'){
   //先月16~末
@@ -65,6 +67,8 @@ if($format == '/' || $format == ',' || $format == '<br>'){
       $sss -> execute(array($row['Uid'], $lastMonth_str));
       while($sel = $sss -> fetch(PDO::FETCH_ASSOC)){
         if($sel['del'] == 0){
+          $arr_str[] = $sel['start'];
+          $arr_end[] = $sel['ends'];
           if(array_key_exists($sel['obj'], $arrs)){
             $arrs[$sel['obj']] = addclock($arrs[$sel['obj']],$sel['sumtime']);
           }else{
@@ -75,6 +79,8 @@ if($format == '/' || $format == ',' || $format == '<br>'){
       }
       $arrs_keys = array_keys($arrs);
       $arres = implode($format, $arrs_keys);
+      //時間も取得する場合
+      // $arr[] = array('day' => $lastMonth_str, 'obj' => $arres, 'format' => $format, 'str' => reset($arr_str), 'end' => end($arr_end));
       $arr[] = array('day' => $lastMonth_str, 'obj' => $arres, 'format' => $format);
 
     }catch(PDOException $e){
@@ -83,6 +89,8 @@ if($format == '/' || $format == ',' || $format == '<br>'){
 
     $lastMonth_str = date('Y-m-d', strtotime($lastMonth_str.'+1 day'));
     $arrs = array();
+    $arr_str = array();
+    $arr_end = array();
   }
 
   //今月1~15
@@ -121,9 +129,10 @@ if($format == '/' || $format == ',' || $format == '<br>'){
   //先月16~末
   while($lastMonth_str <= $lastMonth_Day){
     try{
-      $sss = $pdo->prepare('SELECT * FROM sample WHERE day = :day ORDER BY start ASC');
-      $sss -> bindValue(':day', $lastMonth_str, PDO::PARAM_STR);
-      $sss -> execute();
+      $sss = $pdo->prepare('SELECT * FROM sample WHERE Userid = ? AND day = ? ORDER BY start ASC');
+      $sss -> execute(array($row['Uid'], $lastMonth_str));
+      // $sss -> bindValue(':day', $lastMonth_str, PDO::PARAM_STR);
+      // $sss -> execute();
 
       while($sel = $sss -> fetch(PDO::FETCH_ASSOC)){
         $sel_time = change_s($sel['sumtime']);
@@ -158,9 +167,10 @@ if($format == '/' || $format == ',' || $format == '<br>'){
   //今月1~15
   while($nowMonth_str <= $nowMonth_end){
    try{
-     $sss = $pdo->prepare('SELECT * FROM sample WHERE day = :day ORDER BY start ASC');
-     $sss -> bindValue(':day', $nowMonth_str, PDO::PARAM_STR);
-     $sss -> execute();
+     $sss = $pdo->prepare('SELECT * FROM sample WHERE Userid = ? AND day = ? ORDER BY start ASC');
+     $sss -> execute(array($row['Uid'], $nowMonth_str));
+     // $sss -> bindValue(':day', $nowMonth_str, PDO::PARAM_STR);
+     // $sss -> execute();
 
      while($sel = $sss -> fetch(PDO::FETCH_ASSOC)){
        $sel_time = change_s($sel['sumtime']);

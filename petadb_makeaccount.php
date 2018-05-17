@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>楽楽勤怠</title>
   </head>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -57,7 +58,7 @@ main {
 
 header{
   background-color:#44DEDE;
-  height:5vh;
+  height:50px;
 }
 
 .jmc_icon{
@@ -96,12 +97,12 @@ header i{
 }
 
 .login{
-  width:460px;
+  width:45vh;
   margin:auto;
-  font-size:16px;
+  font-size:1.5vh;
   /* box-sizing: border-box; */
   height:95vh;
-  padding-top:300px;
+  padding-top:30vh;
 }
 
 /* body > .login{
@@ -110,7 +111,7 @@ header i{
 
 .login_header {
   background: #28d;
-  padding: 20px;
+  padding: 2vh;
   font-size: 1.4em;
   font-weight: normal;
   text-align: center;
@@ -121,7 +122,7 @@ header i{
 
 .login_container{
   background: #ebebeb;
-  padding: 12px;
+  padding: 2vh;
   text-aligh: center;
 }
 
@@ -130,7 +131,7 @@ header i{
   border-color: transparent;
   color: #fff;
   cursor: pointer;
-  padding:20px 100px;
+  padding:2vh 10vh;
 }
 
 .login input[type="submit"]:hover {
@@ -143,8 +144,8 @@ header i{
 }
 
 table{
-  margin-left:20px;
-  margin-bottom:20px;
+  margin-left:1vh;
+  margin-bottom:2vh;
 }
 
 a{
@@ -174,16 +175,23 @@ a{
       <form class="login_container" action="petadb_account.php" method="post" onsubmit="return registration_check();">
       <table>
         <tr>
-          <td height='50px' width="90px">UserName</td><td><input type="text" name="un" id="un" value="" autocomplete="off"></td>
+          <td height='1vh' width="50px">UserName</td><td><input type="text" name="un" id="un" value="" autocomplete="off"></td>
         </tr>
         <tr>
-          <td height="50px">Password</td><td><input type="password" name="pw" id="pw" value=""></td>
+          <td height="1vh">Password</td><td><input type="password" name="pw" id="pw" value=""></td>
         </tr>
         <tr>
-          <td height="50px">Password Check</td><td><input type="password" name="pwconf" id="pwconf" value="" onkeyup="setConfirmPW(this.value);"></td><td><div id="pass_confirm_message"></div></td>
+          <td height="1vh">Password Check</td><td><input type="password" name="pwconf" id="pwconf" value="" onkeyup="setConfirmPW(this.value);"></td><td><div id="pass_confirm_message"></div></td>
         </tr>
       </table>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- <input type="checkbox" value="kanri">管理者権限で登録</br></br> -->
 
+      <!-- 管理者チェックなくす -->
+      <!-- <label>
+        <input type="checkbox" name="admin" value="admin">
+        <span>管理者権限で登録</span>
+      </label></br></br> -->
       <center><input type="submit" name="registration" value="登録する"></center>
       </form>
       <a href="./petadb_login.php">ログイン画面へ</a>
