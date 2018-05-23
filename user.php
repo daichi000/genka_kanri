@@ -318,7 +318,7 @@ if($admin == 0){
   <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
-    <title>楽楽勤怠</title>
+    <title>楽楽原価</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"
     integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -328,7 +328,7 @@ if($admin == 0){
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery.timepicker.css" />
-    <link rel="stylesheet" href="./user.css" />
+    <link rel="stylesheet" href="./user_user.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="./jquery-ui-1.12.1.custom/jquery.timepicker.min.js"></script>
@@ -395,7 +395,7 @@ if($admin == 0){
 
         <tr><td class="" id='task_write' width="40px">
           作業内容</td><td id="task_err"></td><td><input type="text" id="task" value=""></td>
-          <td width="70px"><input type="button" id="add_task" value="⊕ 追加">
+          <td width="70px"><input type="button" id="add_task" value="追加">
         </td></br></br></tr></table>
 
         <div id='view'>
@@ -476,7 +476,7 @@ if($admin == 0){
           </td><td id='task_edit_err'></td></tr>
         </table>
 
-        <input type="button" class="update" value="⟳ 更新">
+        <input type="button" class="update" value="更新">
         <input type="button" class="close" value="キャンセル">
 
 
@@ -493,7 +493,7 @@ if($admin == 0){
 <head>
   <meta charset="UTF-8">
   <link rel="shortcut icon" href="favicon.ico">
-  <title>楽楽勤怠</title>
+  <title>楽楽原価</title>
 
   <script src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -503,7 +503,7 @@ if($admin == 0){
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery.timepicker.css" />
-  <link rel="stylesheet" href="userz.css" />
+  <link rel="stylesheet" href="user_kanri_.css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="./jquery-ui-1.12.1.custom/jquery.timepicker.min.js"></script>
@@ -574,7 +574,7 @@ if($admin == 0){
 
       <tr><td class="" id='task_write' width="40px">
         作業内容</td><td id="task_err"></td><td><input type="text" id="task" value=""></td>
-        <td width="70px"><input type="button" id="add_task" value="⊕ 追加">
+        <td width="70px"><input type="button" id="add_task" value="追加">
       </td></br></br></tr></table>
 
       <div id='view'>
@@ -699,7 +699,7 @@ if($admin == 0){
         </td><td id='task_edit_err'></td></tr>
       </table>
 
-      <input type="button" class="update" value="⟳ 更新">
+      <input type="button" class="update" value="更新">
       <input type="button" class="close" value="キャンセル">
 
 
