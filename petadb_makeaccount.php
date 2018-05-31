@@ -7,6 +7,7 @@
   </head>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="petadb_login.css?<?php echo date("YmdHis"); ?>">
 
 <script type="text/javascript">
   function setConfirmPW(pwconfs){
@@ -42,118 +43,6 @@
   }
 </script>
 
-<style type="text/css">
-html{
-  height:100%;
-}
-
-body{
-  height:100%;
-}
-
-main {
-  background: #456;
-  font-family: 'Open Sans', sans-serif;
-}
-
-header{
-  background-color:#44DEDE;
-  height:50px;
-}
-
-.jmc_icon{
-  border:1.2px black solid;
-  border-radius:5px;
-  float:left;
-  margin-right:30px;
-  margin-top:3px;
-  margin-left:5px;
-}
-
-header h1{
-  font-size:25px;
-  color:#F5F5F5;
-  /* font-family:Arial,'ＭＳ Ｐゴシック',sans-serif ; */
-  /* margin-top:15px; */
-  /* padding-top:9px; */
-  margin:6px 0 0 0;
-  float:left;
-}
-
-.top_login{
-
-  float:right;
-  /* width:30px; */
-  height:30px;
-  margin-right:100px;
-  padding-top:2px;
-  margin-top:10px;
-  border-left:1px #dcdcdc solid;
-  border-right:1px #dcdcdc solid;
-}
-
-header i{
-  float:left;
-}
-
-.login{
-  width:45vh;
-  margin:auto;
-  font-size:1.5vh;
-  /* box-sizing: border-box; */
-  height:95vh;
-  padding-top:30vh;
-}
-
-/* body > .login{
-  height:auto;
-} */
-
-.login_header {
-  background: #28d;
-  padding: 2vh;
-  font-size: 1.4em;
-  font-weight: normal;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  margin:0;
-}
-
-.login_container{
-  background: #ebebeb;
-  padding: 2vh;
-  text-aligh: center;
-}
-
-.login input[type="submit"] {
-  background: #28d;
-  border-color: transparent;
-  color: #fff;
-  cursor: pointer;
-  padding:2vh 10vh;
-}
-
-.login input[type="submit"]:hover {
-  background: #17c;
-}
-
-/* Buttons' focus effect */
-.login input[type="submit"]:focus {
-  border-color: #05a;
-}
-
-table{
-  margin-left:1vh;
-  margin-bottom:2vh;
-}
-
-a{
-  color:white;
-  float:right;
-}
-
-</style>
 <body>
   <header>
     <img src="./jmc_icon.jpg" alt="" class='jmc_icon'>
@@ -163,7 +52,6 @@ a{
       <span class='login'><?php echo 'no user'; ?></span>
     </div>
     <div class="logout">
-
     </div>
 
   </header>
@@ -197,8 +85,6 @@ a{
       <a href="./petadb_login.php">ログイン画面へ</a>
     </div>
   </main>
-
-
 
 </body>
 </html>

@@ -314,11 +314,11 @@ if($admin == 0){
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery.timepicker.css" />
-    <link rel="stylesheet" href="./user_user.css" />
+    <link rel="stylesheet" href="./user_user.css?<?php echo date("YmdHis"); ?>" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="./jquery-ui-1.12.1.custom/jquery.timepicker.min.js"></script>
-    <script src="user_user.js"></script>
+    <script src="user_user.js?<?php echo date("YmdHis"); ?>"></script>
   </head>
 
   <body>
@@ -477,11 +477,11 @@ if($admin == 0){
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery.timepicker.css" />
-    <link rel="stylesheet" href="user_kanri_.css" />
+    <link rel="stylesheet" href="user_kanri_.css?<?php echo date("YmdHis"); ?>" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="./jquery-ui-1.12.1.custom/jquery.timepicker.min.js"></script>
-    <script src="user_kanri.js"></script>
+    <script src="user_kanri.js?<?php echo date("YmdHis"); ?>"></script>
   </head>
 
   <body>
