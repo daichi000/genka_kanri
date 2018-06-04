@@ -55,7 +55,8 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
                     <h1>開発課原価管理</h1>
                     <div class="top_login">
                       <i class="material-icons">person</i>
-                      <span class='login'><?php echo htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?></span>
+                      <!-- <span class='login'><?php //echo htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?></span> -->
+                      <span class='login'><?php echo 'no user'; ?></span>
                     </div>
                     <div class="logout">
 
@@ -84,7 +85,8 @@ if($_POST['username'] == '' || $_POST['pass'] == ''){
                 <h1>開発課原価管理</h1>
                 <div class="top_login">
                   <i class="material-icons">person</i>
-                  <span class='login'><?php echo htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?></span>
+                  <!-- <span class='login'><?php //echo htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?></span> -->
+                  <span class='login'><?php echo 'no user'; ?></span>
                 </div>
                 <div class="logout">
                 </div>
@@ -323,9 +325,10 @@ if($admin == 0){
       <label class="tab_item" for="genka">原価コード</label>
       <div class="tab_bottom">
       </div>
-      <div class="menu">
+      <!-- メニューバー取り消し -->
+      <!-- <div class="menu">
       <i class="material-icons" id="menu">menu</i>
-      </div>
+      </div> -->
 
       <!-- 作業入力タブ -->
       <div class="tab_content" id="in_content">
