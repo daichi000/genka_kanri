@@ -208,6 +208,8 @@ if($admin == 0){
             <tr><th width='200px'>時間</th><th width='200px'>主コード</th><th width='250px'>コード</th><th width='220px'>内容<th width='100px'></th></tr>
           </table>
         </div>
+        <div id="day_sumtime">
+        </div>
       </div>
 
       <!-- 作業表示（月）タブ -->
@@ -379,6 +381,8 @@ if($admin == 0){
           <table id='day_view'>
             <tr><th width='200px'>時間</th><th width='200px'>主コード</th><th width='250px'>コード</th><th width='220px'>内容<th width='100px'></th></tr>
           </table>
+        </div>
+        <div id="day_sumtime">
         </div>
       </div>
 
