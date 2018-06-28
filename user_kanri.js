@@ -52,7 +52,7 @@
       // var idData = $('#idData').val();
     });
 
-    //addがクリックされた場合
+    //追加がクリックされた場合
     $('#add_task').click(function(){
       $('#date_err').empty();
       $('#str_err').empty();
@@ -135,47 +135,56 @@
         //変数を動的に指定
         $('#view_tb').append("<tr id=" + works + "><td>" + display.date + "</td><td>"+ display.str +"~"+ display.end +"("+ display.work_time +")</td><td>"+ display.mst +"</td><td>"+ display.sub +"</td><td>"+ display.task +"</td><td><input type='button' class='edit' id=" + works + "><input type='button' class='del' id=" + works + "></td></tr>");
 
-        // $('#view').apppend('<div id=' + works + '>');
-        // var nest = $('<>').append('<div>')
-        // $('#'+ works).append()
-
         $('#task').val('');//textボックス初期化
         $('#str').val(end);
         $('#end').val(end);
         $('#bre').val('');
         $('#work_time').val('');
-        // $('.add_code').hide();
         $('#idData').children().remove();
         $('#idData').append('<option>選択してください</option>');
-        // $('#id_code').hide();
-        // $('#task_write').hide();
-        // $('#add_task').hide();
         $('.code_mst').val('0');
 
-      //編集ダイアログクローズ
-      $('#close').on('click', function(){
-        $('#overlay, #modalWindow').fadeOut();
-      });
-
-      //編集ダイアログ中央設置
-      locateCenter();
-      $(window).resize(locateCenter);
-
-      function locateCenter() {
-        let w = $(window).width();
-        let h = $(window).height();
-
-        let cw = $('#modalWindow').outerWidth();
-        let ch = $('#modalWindow').outerHeight();
-
-        $('#modalWindow').css({
-          'left': ((w - cw) / 1.5) + 'px',
-          'top': ((h - ch) / 1.5) + 'px'
-        });
-      }
+      // //編集ダイアログクローズ
+      // $('#close').on('click', function(){
+      //   $('#overlay, #modalWindow').fadeOut();
+      // });
+      //
+      // //編集ダイアログ中央設置
+      // locateCenter();
+      // $(window).resize(locateCenter);
+      //
+      // function locateCenter() {
+      //   let w = $(window).width();
+      //   let h = $(window).height();
+      //
+      //   let cw = $('#modalWindow').outerWidth();
+      //   let ch = $('#modalWindow').outerHeight();
+      //
+      //   $('#modalWindow').css({
+      //     'left': ((w - cw) / 1.5) + 'px',
+      //     'top': ((h - ch) / 1.5) + 'px'
+      //   });
+      // }
 
       });
     });
+
+    //編集ダイアログ中央設置
+    locateCenter();
+    $(window).resize(locateCenter);
+
+    function locateCenter() {
+      let w = $(window).width();
+      let h = $(window).height();
+
+      let cw = $('.modalWindow').outerWidth();
+      let ch = $('.modalWindow').outerHeight();
+
+      $('.modalWindow').css({
+        'left': ((w - cw) / 1.5) + 'px',
+        'top': ((h - ch) / 1.5) + 'px'
+      });
+    }
 
     //削除ボタン
     $(document).on('click','.del',function(){
@@ -187,13 +196,13 @@
     });
 
     //削除ボタン_select画面
-    $(document).on('click','.del_select',function(){
-      $(this).parent().parent().fadeOut(1000);
-      var works = $(this).attr('id');
-      $.post('del_works.php',{
-        works: works
-      });
-    });
+    // $(document).on('click','.del_select',function(){
+    //   $(this).parent().parent().fadeOut(1000);
+    //   var works = $(this).attr('id');
+    //   $.post('del_works.php',{
+    //     works: works
+    //   });
+    // });
 
     //編集ボタン
     $(document).on('click','.edit',function(){
@@ -206,7 +215,7 @@
       $('#idData_edit_err').empty();
 
       var works = $(this).attr('id');
-      $('#overlay, #modalWindow').fadeIn();
+      $('#overlay, #modalWindow_input').fadeIn();
       $.post('data_edit.php',{
         works: works
       }, function(data){
@@ -241,6 +250,50 @@
       });
       });
 
+      //編集ボタン_作業表示（日）
+      $(document).on('click','.edit_day',function(){
+        $('#date_edit_d_err').empty();
+        $('#str_edit_d_err').empty();
+        $('#end_edit_d_err').empty();
+        $('#task_edit_d_err').empty();
+        $('#time_edit_d_err').empty();
+        $('#code_mst_edit_d_err').empty();
+        $('#idData_edit_d_err').empty();
+
+        var works = $(this).attr('id');
+        $('#overlay_day, #modalWindow_day').fadeIn();
+        $.post('data_edit.php',{
+          works: works
+        }, function(data){
+          $('#date_edit_d').datepicker({
+            dateFormat: dateFormat, //yy-mm-dd
+            showOtherMonths: true, //他の月を表示
+            selectOtherMonths: true //他の月を選択可能
+          }).datepicker('setDate',data.date_); //編集データ
+
+          $('#str_edit_d').val(data.str_.slice(0,-3));
+          $('#end_edit_d').val(data.end_.slice(0,-3));
+          $('#bre_edit_d').val(data.bre_.slice(0,-3));
+          $('#work_time_edit_d').val(data.time_.slice(0,-3));
+          $('.code_mst_edit_d').val(data.mst_);
+          $('.task_edit_d').val(data.task_);
+          var code_mst = $('.code_mst_edit_d').val();
+          $.post('user_select.php',{
+            code_mst: code_mst
+            // cashe: false
+          }, function(data_edit){
+            //code_mst_editに属するsub_codeを表示
+            $('.idData_edit_d').children().remove();
+            for(var i in data_edit){
+              $('.idData_edit_d').append('<option value=' + i + '>' + data_edit[i] + '</option>');//value:id
+            }
+            $('.idData_edit_d').val(data.sub_);
+          });
+          $('.update_day').attr('id', works);
+        });
+      });
+
+      //編集画面の主コード変更
       $('.code_mst_edit').change(function(){
         $('.idData_edit').children().remove();
         $('.idData_edit').append('<option value="0" >選択してください</option>');
@@ -258,7 +311,25 @@
         });
       });
 
-      //UPDATEボタン
+      //編集画面の主コード変更_作業表示（日）
+      $('.code_mst_edit_d').change(function(){
+        $('.idData_edit_d').children().remove();
+        $('.idData_edit_d').append('<option value="0" >選択してください</option>');
+        var code_mst = $('.code_mst_edit_d').val();
+        $.post('user_select.php',{
+          code_mst: code_mst
+          // cashe: false
+        }, function(data_edit){
+          //code_mst_editに属するsub_codeを表示
+          for(var i in data_edit){
+            $('.idData_edit_d').append('<option value=' + i + '>' + data_edit[i] + '</option>');//value:id
+          }
+          // $('.idData_edit').children().remove();
+          // $('.idData_edit').val(data.sub_);
+        });
+      });
+
+      //更新ボタン
       $(document).on('click','.update',function(){
         $('#date_edit_err').empty();
         $('#str_edit_err').empty();
@@ -339,15 +410,102 @@
           work_time_af : work_time_af
         },function(update){
           // alert(update);
-          $('#overlay, #modalWindow').fadeOut();
+          $('#overlay, #modalWindow_input').fadeOut();
           $('#'+ works).empty();
           $('#'+ works).append("<td>" + update.date + "</td><td>" + update.str + "~"+ update.end + "(" + update.work_time + ")</td><td>"+ update.mst + "</td><td>" + update.sub + "</td><td>"+ update.task + "</td><td><input type='button' class='edit' id=" + works + "><input type='button' class='del' id=" + works + "></td>");
         });
       });
 
-      //CLOSEボタン
+      //更新ボタン_作業表示（日）
+      $(document).on('click','.update_day',function(){
+        $('#date_edit_d_err').empty();
+        $('#str_edit_d_err').empty();
+        $('#end_edit_d_err').empty();
+        $('#task_edit_d_err').empty();
+        $('#time_edit_d_err').empty();
+        $('#code_mst_edit_d_err').empty();
+        $('#idData_edit_d_err').empty();
+
+        var check = true;
+
+        if($('#date_edit_d').val() == ''){
+          $('#date_edit_d_err').append('※必須項目');
+          check = false;
+        }else{
+          var date_af = $('#date_edit_d').val();
+        }
+
+        if($('#str_edit_d').val() == ''){
+          $('#str_edit_d_err').append('※必須項目');
+          check = false;
+        }else{
+          var str_af = $('#str_edit_d').val();
+        }
+
+        if($('#end_edit_d').val() == ''){
+          $('#end_edit_d_err').append('※必須項目');
+          check = false;
+        }else{
+          var end_af = $('#end_edit_d').val();
+        }
+
+        if($('.task_edit_d').val() == ''){
+          $('#task_edit_d_err').append('※必須項目');
+          check = false;
+        }else{
+          var task_af = $('.task_edit_d').val();
+        }
+
+        if($('#work_time_edit_d').val().slice(0,1) == '-' || $('#work_time_edit_d').val() == '' || $('#work_time_edit_d').val().slice(0,4) == '0:00'){
+          $('#time_edit_d_err').append('※不適切');
+        }else{
+          var work_time_af = $('#work_time_edit_d').val();
+        }
+
+        if($('.code_mst_edit_d').val() == 0){
+          $('#code_mst_edit_d_err').append('※必須項目');
+          check = false;
+        }else{
+          var code_mst_af = $('.code_mst_edit_d').val();
+        }
+
+        if($('.idData_edit_d').val() == 0){
+          $('#idData_edit_d_err').append('※必須項目');
+          check = false;
+        }else{
+          var idData_af = $('.idData_edit_d').val();
+        }
+
+        var works = $(this).attr('id');
+        var bre_af = $('#bre_edit_d').val();
+
+        $.post('data_after.php', {
+          works : works,
+          task_af : task_af,
+          idData_af : idData_af,
+          code_mst_af : code_mst_af,
+          date_af : date_af,
+          str_af : str_af,
+          end_af : end_af,
+          bre_af : bre_af,
+          work_time_af : work_time_af
+        },function(update){
+          // alert(update);
+          // $('#overlay, #modalWindow_day').fadeOut();
+          $('#overlay_day, #modalWindow_day').fadeOut();
+          $('#d'+ works).empty();
+          $('#d'+ works).append("<td>" + update.str + "~"+ update.end + "(" + update.work_time + ")</td><td>"+ update.mst + "</td><td>" + update.sub + "</td><td>"+ update.task + "</td><td><input type='button' class='edit_day' id=" + works + "><input type='button' class='del' id=" + works + "></td>");
+          //$('#select_day_button').trigger('click');
+          $('#'+ works).empty();
+          $('#'+ works).append("<td>" + update.date + "</td><td>" + update.str + "~"+ update.end + "(" + update.work_time + ")</td><td>"+ update.mst + "</td><td>" + update.sub + "</td><td>"+ update.task + "</td><td><input type='button' class='edit_day' id=" + works + "><input type='button' class='del' id=" + works + "></td>");
+          $('#select_day_button').trigger('click');
+        });
+      });
+
+      //キャンセルボタン
       $(document).on('click','.close',function(){
-        $('#overlay, #modalWindow').fadeOut();
+        $('#overlay, .modalWindow').fadeOut();
+        $('#overlay_day, .modalWindow').fadeOut();
       })
 
     //カレンダー
@@ -444,6 +602,18 @@
       'timeFormat': 'H:i',
       'step' : '10'
     });
+    $('#str_edit_d').timepicker({
+      'timeFormat': 'H:i',
+      'step' : '10'
+    });
+    $('#end_edit_d').timepicker({
+      'timeFormat': 'H:i',
+      'step' : '10'
+    });
+    $('#bre_edit_d').timepicker({
+      'timeFormat': 'H:i',
+      'step' : '10'
+    });
 
 
     //時間計算
@@ -519,6 +689,17 @@
       }
     });
 
+    $('#str_edit_d, #end_edit_d, #bre_edit_d').change(function(){
+      var str_edit_input = $('#str_edit_d').val();
+      var end_edit_input = $('#end_edit_d').val();
+      var bre_edit_input = $('#bre_edit_d').val();
+      if(str_edit_input && end_edit_input){
+        var result2 = timeMath.sub(end_edit_input + ':00', str_edit_input + ':00', bre_edit_input + ':00');
+        // console.log(result1);
+        $('#work_time_edit_d').val(result2.slice(0,-3));//秒を非表示
+      }
+    });
+
     //作業表示（日）表示クリック
     $('#select_day_button').click(function(){
       $('#day_view td').remove();
@@ -529,9 +710,10 @@
       },function(result){
         for(n in result){
           if(result[n].del == 0){
-            $('#day_view').append('<tr><td>'+ result[n].start.slice(0,-3) +'~'+ result[n].ends.slice(0,-3) +'('+ result[n].sumtime.slice(0,-3)+')</td><td>'+ result[n].mst_id + '</td><td>' + result[n].sub_id + '</td><td>'+ result[n].obj + '</td><td><input type="button" class="del_select" id=' + result[n].key + '></td></tr><br>');
+            $('#day_view').append('<tr id=d' + result[n].key + '><td>'+ result[n].start.slice(0,-3) +'~'+ result[n].ends.slice(0,-3) +'('+ result[n].sumtime.slice(0,-3)+')</td><td>'+ result[n].mst_id + '</td><td>' + result[n].sub_id + '</td><td>'+ result[n].obj + '</td><td><input type="button" class="edit_day" id=' + result[n].key + '><input type="button" class="del" id=' + result[n].key + '></td></tr><br>');
           }
         }
+        //一日の合計作業時間
         if(n == result.length -1){
           $('#day_sumtime').append('<table id="day_sumtime_view"><tr><th>本日の作業時間</th></tr><tr><td>' + result[n].d_time + '</td></tr></table>');
         }

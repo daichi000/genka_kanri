@@ -2,7 +2,7 @@
   height:100%;
 } */
 
-#overlay {
+#overlay, #overlay_day {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -140,7 +140,7 @@ table#day_view, table#day_sumtime_view{
   /* z-index: -10; */
 }
 
-.edit{
+.edit, .edit_day{
   border: 0px;
   width: 30px;
   height: 30px;
@@ -149,7 +149,7 @@ table#day_view, table#day_sumtime_view{
   outline: none;
 }
 
-.del,.del_select{
+.del{
   border: 0px;
   width: 30px;
   height: 30px;
@@ -158,7 +158,7 @@ table#day_view, table#day_sumtime_view{
   outline: none;
 }
 
-.update{
+.update, .update_day{
   border: 1px solid #44DEDE;
   background-color: #44DEDE;
   background-image: -webkit-linear-gradient(top, #44DEDE, #44DEDE);
@@ -196,11 +196,11 @@ table#day_view, table#day_sumtime_view{
   text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
 }
 
-.del,.edit,.del_select{
+.del,.edit,.edit_day{
   margin-left:8px;
 }
 
-#modalWindow {
+.modalWindow {
   width: 660px;
   height: 450px;
   position: fixed;
@@ -213,6 +213,12 @@ table#day_view, table#day_sumtime_view{
 
 #edit_dialog{
   margin-bottom:20px;
+  border-spacing: 0px 8px;
+  margin-left:12px;
+}
+
+#edit_dialog_day{
+  margin-bottom:70px;
   border-spacing: 0px 8px;
   margin-left:12px;
 }
