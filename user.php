@@ -210,6 +210,8 @@ if($admin == 0){
         </div>
         <div id="day_sumtime">
         </div>
+        <div id='overlay_day'>
+        </div>
       </div>
 
       <!-- 作業表示（月）タブ -->
@@ -239,7 +241,7 @@ if($admin == 0){
     </div>
 
     <!-- 編集ダイアログ -->
-    <div id="modalWindow">
+    <div class="modalWindow" id="modalWindow_input">
       <table id="edit_dialog">
         <tr><td>作業日</td><td><input type='text' id='date_edit' value=''></td><td id='date_edit_err'></td></tr>
         <tr><td>開始時刻</td><td><input type='text' id='str_edit'></td><td id='str_edit_err'></td></tr>
@@ -271,6 +273,38 @@ if($admin == 0){
       <input type="button" class="close" value="キャンセル">
     </div>
 
+    <!-- 編集ダイアログ_作業表示（日）-->
+    <div class="modalWindow" id="modalWindow_day">
+      <table id="edit_dialog">
+        <tr><td>作業日</td><td><input type='text' id='date_edit_d' value=''></td><td id='date_edit_d_err'></td></tr>
+        <tr><td>開始時刻</td><td><input type='text' id='str_edit_d'></td><td id='str_edit_d_err'></td></tr>
+        <tr><td>終了時刻</td><td><input type='text' id='end_edit_d'></td><td id='end_edit_d_err'></td></tr>
+        <tr><td>休憩</td><td><input type='text' id='bre_edit_d'></td></tr>
+        <tr><td>作業時間</td><td><input type="text" id="work_time_edit_d" name="" value=""></td><td id='time_edit_d_err'></td></tr>
+        <tr><td>主コード</td><td>
+        <select class="code_mst_edit_d" value="">
+          <option value='0'>選択してください</option>
+          <?php
+          foreach($cdmst_list as $key => $cdmst_name){
+            echo '<option value="'.$key.'">'.$cdmst_name.'</option>';
+          }
+          ?>
+        </select>
+        </td><td id='code_mst_edit_d_err'>
+        </td></tr>
+          <tr><td id='id_code'>コード</td><td>
+          <select class="idData_edit_d" value="" id=''>
+            <option value='0'>選択してください</option>
+          </select>
+        </td><td id='idData_edit_d_err'></td></tr>
+        <tr><td class="" id='task_edit_d'>
+          作業内容</td><td><input type="text" class="task_edit_d" value="">
+        </td><td id='task_edit_d_err'></td></tr>
+      </table>
+
+      <input type="button" class="update_day" value="更新">
+      <input type="button" class="close" value="キャンセル">
+    </div>
   </body>
   </html>
 
